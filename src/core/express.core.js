@@ -9,8 +9,6 @@ module.exports = router => (logger = console) => {
 
   app.use(bodyParser.json());
 
-  app.use("/", router);
-
   app.use(
     cors({
       credentials: true,
@@ -31,6 +29,7 @@ module.exports = router => (logger = console) => {
       )
     })
   );
+
 
   app.use((req, res, next) =>
     req.method !== "GET" &&
@@ -69,6 +68,8 @@ module.exports = router => (logger = console) => {
         // await next()
       )
   );
+
+  app.use("/", router);
 
   app.use(async (req, res, next) => {
     res.status(404).json({

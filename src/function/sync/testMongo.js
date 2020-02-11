@@ -3,6 +3,7 @@ const mongoConf = require("../../core/mongo.core");
 module.exports = async (req, res, next) => {
   try {
     const { name, age } = req.body;
+    console.log(req)
 
     const db = mongoConf.db();
     const coll = await db.collection("test_collections");
