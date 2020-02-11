@@ -2,6 +2,7 @@ const config = require("config");
 const router = require("./function/router");
 const logger = require("./core/logger.core");
 const app = require("./core/express.core")(router)(logger);
+const mongoConf = require("./core/mongo.core");
 
 const startServer = () =>
   new Promise((resolve, reject) => {
@@ -14,6 +15,8 @@ const startServer = () =>
 const start = async () => {
   try {
     await startServer();
+    await mongoConf.connect(config.get('mongoUrl'), { logger });
+
     logger.info(
       `${"[MAIN]"} Server is listening on port ${config.get("port")}`
     );

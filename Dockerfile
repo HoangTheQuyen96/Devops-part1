@@ -6,7 +6,8 @@ WORKDIR /opt
 # Environment variable configuration
 ENV NODE_ENV=development \
     PORT=8000 \
-    HOST=localhost 
+    HOST=localhost \
+    MONGO_URL=mongodb://mongodb:27017/Devops-DB 
 
 # Install app dependencies
 COPY package*.json ./

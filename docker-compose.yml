@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: "3"
+services:
+  mongo-db-devop:
+    image: mongo
+    restart: on-failure:5
+    ports:
+      - "27017:27017"
+  node_app:
+    build: 
+      context: .
+    restart: on-failure:5
+    depends_on:
+      - mongo-db-devop
+    environment:
+      - MONGO_URL=mongodb://mongo-db-devop:27017/Devops-DB 
+      - NODE_ENV=development
+      - PORT=8000
+      - HOST=localhost
+    ports:
+      - "6000:8000"
+  

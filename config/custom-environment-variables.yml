@@ -1,3 +1,4 @@
 env: NODE_ENV
 port: PORT
 host: HOST
+mongoUrl: MONGO_URL
